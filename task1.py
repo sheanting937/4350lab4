@@ -19,7 +19,7 @@ def check_name(name):
 def check_name_len(name):
     # TODO: implement this function
 
-    if len(name.encode('utf-8')) > 20:
+    if len(name) > 20:
         return False
     return True
 
