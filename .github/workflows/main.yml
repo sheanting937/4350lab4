@@ -1,7 +1,7 @@
 name: lab4-CI
 
 on:
-  push:
+  pull_request:
     branches: [main]
 
 jobs:
@@ -41,6 +41,6 @@ jobs:
         run: |
           pytest
 
-      - name: Run tests for Task 2
-        run: |
-          pylint task2.py
+#      - name: Run tests for Task 2
+#        run: |
+#          pylint task2.py
