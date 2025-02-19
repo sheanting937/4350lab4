@@ -1,4 +1,3 @@
-# 1155173826
 from task1 import check_name
 from task1 import check_name_len
 from task1 import check_sid_len
