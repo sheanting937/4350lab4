@@ -7,7 +7,10 @@ def check_name(name):
     if name.strip() != name: 
         return False
     
-    # Unicode printable characters
+    # printable characters
+    if not name.isprintable():
+        return False
+    
     # no Unicode emoji
     emoji_pattern = re.compile("["
                                u"\U0001F600-\U0001F64F"
