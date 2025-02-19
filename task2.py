@@ -3,7 +3,8 @@
 # pylint: disable = missing-function-docstring
 
 import json
-from netifaces import *
+# from netifaces import *
+from netifaces import interfaces, ifaddresses, AF_INET
 from netaddr import IPAddress
 
 def get_ip_addresses():
@@ -32,12 +33,14 @@ def get_netmask_readable(ip_info):
     convert the netmask to integer format
     """
     netmask = ip_info['netmask']
-    ip_info['netmask'] = eval(str(IPAddress(netmask).netmask_bits()))
+    # ip_info['netmask'] = eval(str(IPAddress(netmask).netmask_bits()))
+    ip_info['netmask'] = IPAddress(netmask).netmask_bits()
     return ip_info
 
 def check_localhost(ip_info):
     ip_addr = ip_info['addr']
-    if ip_addr is "127.0.0.1":
+    # if ip_addr is "127.0.0.1":
+    if ip_addr == "127.0.0.1":
         return True
     return False
 
