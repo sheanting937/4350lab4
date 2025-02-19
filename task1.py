@@ -1,20 +1,34 @@
-# Reference from Poe
+# Reference from Doubao
 import string
 
 def check_name(name):
     # TODO: implement this function
-    if name.strip() != name: # no leading and trailing spaces
+    # no leading and trailing spaces
+    if name.strip() != name: 
         return False
     
-    if all(c in string.printable for c in name): # all printable characters
-        if any('\U0001F600' <= c <= '\U0001F64F' for c in name): # no emoji
-            return False
+    # all printable characters
+    if all(c in string.printable for c in name): 
+        # Unicode emoji range
+        emoji_ranges = [
+            ('\U0001F600', '\U0001F64F'),
+            ('\U0001F300', '\U0001F5FF'),
+            ('\U0001F680', '\U0001F6FF'),
+            ('\U0001F1E0', '\U0001F1FF'),
+            ('\u2600', '\u26FF'),
+            ('\u2700', '\u27BF')
+        ]
+        
+        for start, end in emoji_ranges:
+            if any(start <= c <= end for c in name):
+                return False
         return True
     return False
     
 def check_name_len(name):
     # TODO: implement this function
-    if len(name) > 20: # a maximum length of 20 bytes
+    # a maximum length of 20 bytes
+    if len(name) > 20: 
         return False
     return True
 
