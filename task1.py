@@ -1,5 +1,5 @@
 # Reference from Doubao
-import string
+import re
 
 def check_name(name):
     # TODO: implement this function
@@ -7,23 +7,20 @@ def check_name(name):
     if name.strip() != name: 
         return False
     
-    # all printable characters
-    if all(c in string.printable for c in name): 
-        # Unicode emoji range
-        emoji_ranges = [
-            ('\U0001F600', '\U0001F64F'),
-            ('\U0001F300', '\U0001F5FF'),
-            ('\U0001F680', '\U0001F6FF'),
-            ('\U0001F1E0', '\U0001F1FF'),
-            ('\u2600', '\u26FF'),
-            ('\u2700', '\u27BF')
-        ]
-        
-        for start, end in emoji_ranges:
-            if any(start <= c <= end for c in name):
-                return False
-        return True
-    return False
+    # Unicode printable characters
+    # no Unicode emoji
+    emoji_pattern = re.compile("["
+                               u"\U0001F600-\U0001F64F"
+                               u"\U0001F300-\U0001F5FF"
+                               u"\U0001F680-\U0001F6FF"
+                               u"\U0001F1E0-\U0001F1FF"
+                               u"\u2600-\u26FF"
+                               u"\u2700-\u27BF"
+                               "]+", flags=re.UNICODE)
+
+    if emoji_pattern.search(name):
+        return False
+    return True
     
 def check_name_len(name):
     # TODO: implement this function
