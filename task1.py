@@ -16,6 +16,7 @@ def check_name(name):
                                u"\U0001F1E0-\U0001F1FF"
                                u"\u2600-\u26FF"
                                u"\u2700-\u27BF"
+                               u"\u2B50-\u2B55"
                                "]+", flags=re.UNICODE)
 
     if emoji_pattern.search(name):
